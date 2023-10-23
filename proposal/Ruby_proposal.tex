@@ -3,6 +3,30 @@
 % Packages for document formatting
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=red]{hyperref}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Ruby,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 
 \begin{document}
@@ -42,19 +66,135 @@
 % Include relevant sections about the proposed website layout. Discuss language-specific details and provide a comparison with other languages you've covered in class.
 
 \subsection{Language Description and History}
-% Subsection content
+  Ruby is an interpreted, object oriented programming language that is commonly used for web development. Most often Ruby is used for development with the framework Ruby on Rails. Ruby was first created in 1993 by Yukihiro Matsumoto in Japan, when its creators decided on the name Ruby over the runner-up name Coral. After its inception, Ruby version 1.0 was officially released three years later in 1996. Fast forward a couple years, and in 
+  2000, Ruby was more popular than Python in Japan. In 2004, the Ruby on Rails framework was released and Apple released OS X v10.5 which included Ruby on Rails, boosting the language's popularity further. In 2016 Ruby reached its peak usage and got into position 8 of the TIOBE index, which is the highest it has ever reached.
+  As of 2023, Ruby is now in position 19 of the TIOBE index. It is still a popular language, but it may be past its prime.
 
 \subsection{Links to Specification, Official Documentation, Tutorials}
-% Subsection content
+  \begin{itemize}
+    \item \href{https://www.ruby-lang.org/en/documentation/}{Official Ruby Documentation}
+    \item \href{https://www.youtube.com/watch?v=ml5sNqftiK4}{Ruby Introducution (video)}
+    \item \href{https://www.youtube.com/watch?v=mPdD8ms5gEQ}{Using Classes in Ruby (video)}
+    \item \href{https://www.youtube.com/watch?v=QJKQBPzZRTQ}{GET Requests with HTTParty Gem (video)}
+  \end{itemize}
 
 \subsection{Installation Instructions and Use}
-% Subsection content
+  \subsubsection{Windows}
+    \begin{enumerate}
+      \item Click \href{https://rubyinstaller.org/}{this} link to the RubyInstaller for Windows
+      \item Download the RubyInstaller
+      \item Once the download is completed, navigate to your downloads and double-click the RubyInstaller tool
+      \item The setup wizard will prompt you to accept the License Agreement, download location and components to install. If you are unsure at any of these steps, use the defaults selected.
+      \item Once you click Finish with the setup wizard, a terminal will open for the RubyInstaller. Press ENTER to install the default tools
+      \item Once the tools are finished installing, click ENTER again to close the terminal
+      \item Finally, open a terminal and enter \verb|ruby -v|. If your installation is correct, then your Ruby version should be displayed.
+    \end{enumerate}
+
+  \subsubsection{MacOS}
+    Ruby version 2.0 and above are already included in MacOS releases. However, if you do not have Ruby on your machine for some reason, we recommend using the Homebrew package manager.
+    \begin{enumerate}
+      \item If you do not already have the Homebrew package manager, install it \href{https://brew.sh/}{here}
+      \item Once you have Homebrew, open up a terminal
+      \item Then run \verb|brew install ruby|
+      \item After the installation completes, run \verb|ruby -v| which will display your Ruby version and confirm your installation was successful
+    \end{enumerate}
+
+  \subsubsection{Linux (Ubuntu)}
+    \begin{enumerate}
+      \item Open a terminal
+      \item Using the default package manager, run \verb|sudo apt-get install ruby-full|
+      \item After the installation completes, run \verb|ruby -v| which will display your Ruby version and confirm your installation was successful
+    \end{enumerate}
 
 \subsection{Introductory Programs}
-% Subsection content
+  \subsubsection{Standard hello world program in Ruby}
+  To run this program
+  \begin{enumerate}
+    \item Open a text editor or IDE of your choice
+    \item Create a new file named \verb|hello.rb|
+    \item Copy the code below into the file then save the file
+    \item Open a terminal and navigate to the directory containing \verb|hello.rb|
+    \item Then run \verb|ruby hello.rb|
+  \end{enumerate}
+  \begin{lstlisting}
+    puts "Hello World!"
+  \end{lstlisting}
 
+  \subsubsection{A simple math program in Ruby}
+  To run this program
+  \begin{enumerate}
+    \item Open a text editor or IDE of your choice
+    \item Create a new file named \verb|sum.rb|
+    \item Copy the code below into the file then save the file
+    \item Open a terminal and navigate to the directory containing \verb|sum.rb|
+    \item Then run \verb|ruby sum.rb|
+  \end{enumerate}
+  \begin{lstlisting}
+    a = 3
+    b = 3
+    c = a + b
+    puts "a + b = #{c}"
+  \end{lstlisting}
+
+  \subsubsection{Demonstration of using classes and inheritance in Ruby}
+  To run this program
+  \begin{enumerate}
+    \item Open a text editor or IDE of your choice
+    \item Create a new file named \verb|sum.rb|
+    \item Copy the code below into the file then save the file
+    \item Open a terminal and navigate to the directory containing \verb|sum.rb|
+    \item Then run \verb|ruby sum.rb|
+  \end{enumerate}
+  \begin{lstlisting}
+    # base class Human
+    class Human
+        @@classVariable = 20;
+        # prints "I evolved!"
+        def inherit ()
+            puts "I evolved!"
+        end
+    end
+
+    # class Person inherits from Human
+    class Person < Human
+        #overrides constructor so that it can take arguments
+        def initialize (firstName, lastName, age)
+            @firstName = firstName
+            @lastName = lastName
+            @age = age
+        end
+
+        # prints persons firstName, lastName and age
+        def introduction ()
+            puts "My name is #{@firstName} #{@lastName}, and I'm #{@age} years old."
+        end
+
+        def classVar ()
+            @@classVariable
+        end
+    end
+
+    person = Person.new("Brandon", "Danell", 24)
+
+    person.inherit()
+    person.introduction()
+    puts "#{person.classVar()}"
+  \end{lstlisting}
+  
 \subsection{Related Languages and Comparison}
-% Subsection content
+  Ruby is closely related to Python, and marginally comparable to Java.
+  Ruby resemembles Python for several reasons, such as it is a loosely typed interpreted language, and primarily uses newlines for delimiting
+  code execution instead of semicolons. Semicolons can still be used if the developer desires, or if they want to put multiple commands to execute on the same line, 
+  but they are not necessary. \newline
+  Ruby resemembles Java in the sense that it is an object oriented programming language, but that is about as far as the similarities go. Ruby doesn't require types to instantiate variables, 
+  Ruby has key characters that precede special variables, and Ruby does not use curly brackets except in specific cases. For example, Ruby can have class specific variables which can be called upon from any instance of the class, and these are
+  preceded with two \verb|@| characters before the variable, like \verb|@@a_class_variable = "this is a class variable"|. For instance variables, which are specific to the individual object are preceded with a single \verb|@| symbol like \verb|@an_instance_variable = userName|.
+  Global variables are preceded with a \verb|$| character. So a global variable that is accesible anywhere in the script would look like \verb|$a_global_variable = urlPath|. You can see an example of these class and instance variables being used in section 3.4.3.
+  Standard variables have no special preceding characters, but still adhere to standard scope rules. So standard variables would look like a regular word with an assignment operator like \verb|variable = 3|. You can see an example of standard variables being used in section 3.4.2. \newline
+  Similar to Python, Ruby opted to not use curly brackets. When defining a function for example, you write \verb|def function()|, but instead of curly brackets, you simply go to the next line and write what
+  that function should be doing. To represent the end of the function, you type \verb|end| at the same tab distance as the \verb|def| of the function. This \verb|end| keyword is used universally to represent that the scope is closed.
+  End is used to close class definitions, function definitions, loops and if statements. This is one of the key differences, other than variable instantion, that sets Ruby apart from Java and Python.
+  Java heavily uses curly brackets, and Python uses colons and newlines for scope.
 
 \section{Programming Assignment Proposal}
 % Describe the programming assignment, considering its size and complexity. Explain how it relates to the chosen programming language and how you plan to evaluate its success. Include details about UI elements, testing, and project management.
